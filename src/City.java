@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class City extends AbstractGraph{
+public class City extends AbstractGraph<House>{
     private ArrayList<House> allHousesOfTheCity = vertexList;
     private int[][] ways = edge;
 
@@ -9,15 +9,11 @@ public class City extends AbstractGraph{
     }
 
     public void addWayBuildCostBetweenTwoHouses(House firstHouse, House secondHouse, int wayBuildCost){
-        addWeightForEdge(firstHouse,secondHouse,wayBuildCost);
+        addWeightForEdgeInUndirectedGraph(firstHouse,secondHouse,wayBuildCost);
     }
 
     public int getWayBuildCostBetweenTwoHouses(House firstHouse, House secondHouse){
         return getWeightOfEdge(firstHouse, secondHouse);
-    }
-
-    public void printAllHousesWithWayBuildCostOut(){
-        printGraphOut(allHousesOfTheCity, edge);
     }
 
     public void printAllHousesWithWayBuildCostOut(int[][] graph){
@@ -34,8 +30,8 @@ public class City extends AbstractGraph{
         return searchedHouse;
     }
 
-    public ArrayList<House> getAllHousesOfTheCity() {
-        return allHousesOfTheCity;
+    public ArrayList<House> getAllHousesOfCity() {
+        return vertexList;
     }
 
     public int[][] getWays() {

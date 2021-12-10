@@ -1,3 +1,3 @@
 public interface IObjectGetName {
-    public String getName();
+    String getName();
 }

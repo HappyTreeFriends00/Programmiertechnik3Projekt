@@ -4,13 +4,13 @@ public class RoadConstructionCostCalculator {
 
     public int[][] calculateMinimalCostToBuildStreets(City city){
         PriorityQueue<Node> priorityQueue = new PriorityQueue<>();
-        Node[] nodes = new Node[city.getAllHousesOfTheCity().size()];
-        int[][] graph = new int[city.getAllHousesOfTheCity().size()][city.getAllHousesOfTheCity().size()];
+        Node[] nodes = new Node[city.getAllHousesOfCity().size()];
+        int[][] graph = new int[city.getAllHousesOfCity().size()][city.getAllHousesOfCity().size()];
 
-        for (int i = 0; i < city.getAllHousesOfTheCity().size(); i++) {
+        for (int i = 0; i < city.getAllHousesOfCity().size(); i++) {
             Node node;
-            House thisHouse = city.getAllHousesOfTheCity().get(i);
-            if(city.getAllHousesOfTheCity().indexOf(thisHouse)== 0){
+            House thisHouse = city.getAllHousesOfCity().get(i);
+            if(city.getAllHousesOfCity().indexOf(thisHouse)== 0){
                 node = new Node(thisHouse, 0, null);
             }else {
                 node = new Node(thisHouse, 9999, null);
@@ -21,12 +21,12 @@ public class RoadConstructionCostCalculator {
 
         while (priorityQueue.iterator().hasNext()) {
             Node actualHouse = priorityQueue.remove();
-                for (int anotherHouse = 0; anotherHouse < city.getAllHousesOfTheCity().size(); anotherHouse++) {
-                    if (city.getWays()[city.getAllHousesOfTheCity().indexOf(actualHouse.house)][anotherHouse] != 0) {
+                for (int anotherHouse = 0; anotherHouse < city.getAllHousesOfCity().size(); anotherHouse++) {
+                    if (city.getWays()[city.getAllHousesOfCity().indexOf(actualHouse.house)][anotherHouse] != 0) {
                         for (Node thisNode : nodes) {
-                            if (thisNode.house == city.getAllHousesOfTheCity().get(anotherHouse) &&
-                                    thisNode.key > city.getWays()[city.getAllHousesOfTheCity().indexOf(actualHouse.house)][anotherHouse]) {
-                                thisNode.key = city.getWays()[city.getAllHousesOfTheCity().indexOf(actualHouse.house)][anotherHouse];
+                            if (thisNode.house == city.getAllHousesOfCity().get(anotherHouse) &&
+                                    thisNode.key > city.getWays()[city.getAllHousesOfCity().indexOf(actualHouse.house)][anotherHouse]) {
+                                thisNode.key = city.getWays()[city.getAllHousesOfCity().indexOf(actualHouse.house)][anotherHouse];
                                 thisNode.previous = actualHouse.house;
                             }
                         }
@@ -34,8 +34,8 @@ public class RoadConstructionCostCalculator {
                 }
                 if (actualHouse.key != 0) {
                     if (actualHouse.previous != null) {
-                        graph[city.getAllHousesOfTheCity().indexOf(actualHouse.house)][city.getAllHousesOfTheCity().indexOf(actualHouse.previous)] = actualHouse.key;
-                        graph[city.getAllHousesOfTheCity().indexOf(actualHouse.previous)][city.getAllHousesOfTheCity().indexOf(actualHouse.house)] = actualHouse.key;
+                        graph[city.getAllHousesOfCity().indexOf(actualHouse.house)][city.getAllHousesOfCity().indexOf(actualHouse.previous)] = actualHouse.key;
+                        graph[city.getAllHousesOfCity().indexOf(actualHouse.previous)][city.getAllHousesOfCity().indexOf(actualHouse.house)] = actualHouse.key;
                     }
                 }
             PriorityQueue<Node> priorityQueue1 = new PriorityQueue<>();
