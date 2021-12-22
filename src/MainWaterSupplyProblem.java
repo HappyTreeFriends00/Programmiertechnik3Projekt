@@ -4,14 +4,14 @@ public class MainWaterSupplyProblem {
     public static void main(String[] args) {
         House wasserwerk = new House(1,"wasserwerk",true, false);
         House thoma = new House(2,"thoma",false, false);
-        House dogan = new House(3,"dogan",false, false);
-        House adler = new House(4,"adler",false, false);
-        House ilona = new House(5,"ilona",false, false);
-        House club = new House(6,"club",false, false);
-        House bogart = new House(7,"bogar",false, false);
-        House supermarkt = new House(8,"supermarkt",false,false);
-        House holler = new House(9,"holler",false, true);
-        House[] houseArray = {wasserwerk, thoma, dogan, adler, ilona, club, holler,supermarkt, bogart};
+        House dogan = new House(6,"dogan",false, false);
+        House adler = new House(7,"adler",false, false);
+        House ilona = new House(4,"ilona",false, false);
+        House club = new House(3,"club",false, false);
+        House bogart = new House(5,"bogar",false, false);
+        House holler = new House(8,"holler",false, false);
+        House supermarkt = new House(9,"supermarkt",false,true);
+        House[] houseArray = {wasserwerk, thoma, club, ilona, bogart, dogan,adler,holler,supermarkt};
         ArrayList<House> houses = new ArrayList<>();
         for (int i = 0; i < houseArray.length; i++) {
             houses.add(houseArray[i]);
@@ -35,6 +35,7 @@ public class MainWaterSupplyProblem {
         System.out.println(waterSupplySystem.getListOfAllHousesWithTheirSurnames());
         WaterSupplyMaxFlowCalculator calculator = new WaterSupplyMaxFlowCalculator();
         waterSupplySystem.printGraphOut(houses,calculator.calculateMaxFlowForWaterSupplySystem(waterSupplySystem));
+        System.out.println(calculator.getMaxFlowRate(waterSupplySystem));
 
     }
 }
