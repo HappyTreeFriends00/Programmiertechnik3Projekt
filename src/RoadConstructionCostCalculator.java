@@ -13,7 +13,7 @@ public class RoadConstructionCostCalculator {
             if(city.getAllHousesOfCity().indexOf(thisHouse)== 0){
                 node = new Node(thisHouse, 0, null);
             }else {
-                node = new Node(thisHouse, 9999, null);
+                node = new Node(thisHouse, Integer.MAX_VALUE, null);
             }
             nodes[i] = node;
             priorityQueue.add(node);

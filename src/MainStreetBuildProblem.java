@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class MainStreetBuildProblem {
     public static void main(String[] args) {
-        ArrayList<House> houses = new ArrayList<>();
+      /*  ArrayList<House> houses = new ArrayList<>();
         System.out.println("Bitte geben sie von allen Häusern einer Stadt die Hausnummer ein. Sobald sie fertig sind mit der eingabe \"fertig\" und enter bestätigen");
         Scanner scanner = new Scanner(System.in);
         boolean giveMoreHouses = true;
@@ -58,9 +58,9 @@ public class MainStreetBuildProblem {
                     moreWeightWillAdd = false;
                 }
                 System.out.println("Sobald sie fertig sind mit der eingabe \"fertig\" und enter bestätigen");
-            }
+            }*/
 
-       /* House house1 = new House(1);
+        House house1 = new House(1);
         House house2 = new House(2);
         House house3 = new House(3);
         House house4 = new House(4);
@@ -116,7 +116,7 @@ public class MainStreetBuildProblem {
         city.addWeightForEdgeInUndirectedGraph(house9, house6, 3);
         city.addWeightForEdgeInUndirectedGraph(house0, house4, 2);
         city.addWeightForEdgeInUndirectedGraph(house0, house5, 3);
-        city.addWeightForEdgeInUndirectedGraph(house0, house9, 3);*/
+        city.addWeightForEdgeInUndirectedGraph(house0, house9, 3);
 
 
         city.printGraphOut(houses, city.edge);
