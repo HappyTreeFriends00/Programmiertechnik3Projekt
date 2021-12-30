@@ -121,7 +121,7 @@ public class MainStreetBuildProblem {
 
         city.printGraphOut(houses, city.edge);
         RoadConstructionCostCalculator calculator = new RoadConstructionCostCalculator();
-        city.printAllHousesWithWayBuildCostOut(calculator.calculateMinimalCostToBuildStreets(city));
-
+        City.cityWithStreets = calculator.calculateMinimalCostToBuildStreets(city);
+        city.printAllHousesWithWayBuildCostOut(City.cityWithStreets);
     }
 }

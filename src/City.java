@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class City extends AbstractGraph<House>{
     private ArrayList<House> allHousesOfTheCity = vertexList;
     private int[][] ways = edge;
+    public static int[][] cityWithStreets;
 
     public City(ArrayList<House> houses){
         super(houses);
@@ -36,5 +37,12 @@ public class City extends AbstractGraph<House>{
 
     public int[][] getWays() {
         return ways;
+    }
+
+    public void addWeightForEdgeInUndirectedGraph(House objectOne, House objectTwo, int weight){
+        edge[vertexList.indexOf(objectOne)] [vertexList.indexOf(objectTwo)] = weight;
+        edge[vertexList.indexOf(objectTwo)] [vertexList.indexOf(objectOne)] = weight;
+        objectOne.incrementDegree();
+        objectTwo.incrementDegree();
     }
 }

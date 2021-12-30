@@ -3,6 +3,7 @@ public class House implements IObjectGetName {
     private boolean isSource;
     private boolean isTrap;
     private String surname;
+    private int degree;
 
     public House(int houseNumber) {
         this.houseNumber = houseNumber;
@@ -34,5 +35,17 @@ public class House implements IObjectGetName {
 
     public boolean isTrap() {
         return isTrap;
+    }
+
+    public int getDegree() {
+        return degree;
+    }
+
+    public void incrementDegree() {
+        this.degree++;
+    }
+
+    public void decrementDegree() {
+        this.degree--;
     }
 }
