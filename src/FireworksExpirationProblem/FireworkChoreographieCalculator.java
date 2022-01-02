@@ -1,23 +1,26 @@
 package FireworksExpirationProblem;
 
-import com.intellij.util.containers.Queue;
+import sun.misc.Queue;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 public class FireworkChoreographieCalculator {
 
     private ArrayList<Firework> calculateExpirationOfFirework(ArrayList<Firework> fireworkArrayList, Firework startNode){
-        Queue<Firework> queue = new Queue<>(fireworkArrayList.size());
-        queue.addLast(startNode);
+        Queue<Firework> queue = new Queue<>();
+        queue.enqueue(startNode);
         ArrayList<Firework> traversedNode = new ArrayList<>();
         traversedNode.add(startNode);
         while (!queue.isEmpty()){
-            Firework currentNode = queue.pullFirst();
+            Firework currentNode = null;
+            try {
+                currentNode = queue.dequeue();
+            }catch (InterruptedException e){
+                System.out.println(e.toString());
+            }
             if(!traversedNode.contains(currentNode) | currentNode == startNode) {
                 for (Firework firework : currentNode.getFollowingNodes()) {
-                    queue.addLast(firework);
+                    queue.enqueue(firework);
                 }
                 if (currentNode != startNode) {
                     traversedNode.add(currentNode);
