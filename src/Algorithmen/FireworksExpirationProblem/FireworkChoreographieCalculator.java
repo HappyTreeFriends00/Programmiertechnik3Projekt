@@ -1,4 +1,4 @@
-package FireworksExpirationProblem;
+package Algorithmen.FireworksExpirationProblem;
 
 import sun.misc.Queue;
 

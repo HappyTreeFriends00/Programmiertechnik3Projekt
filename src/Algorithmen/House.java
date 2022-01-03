@@ -1,3 +1,5 @@
+package Algorithmen;
+
 public class House implements IObjectGetName {
     private int houseNumber;
     private boolean isSource;

@@ -1,4 +1,4 @@
-package FireworksExpirationProblem;
+package Algorithmen.FireworksExpirationProblem;
 
 import java.util.ArrayList;
 import java.util.Collections;

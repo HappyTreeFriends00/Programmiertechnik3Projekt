@@ -1,9 +1,14 @@
+package Algorithmen.RoadConstructionProblem;
+
+import Algorithmen.City;
+import Algorithmen.House;
+import Algorithmen.RoadConstructionProblem.RoadConstructionCostCalculator;
+
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class MainStreetBuildProblem {
     public static void main(String[] args) {
-      /*  ArrayList<House> houses = new ArrayList<>();
+      /*  ArrayList<Algorithmen.House> houses = new ArrayList<>();
         System.out.println("Bitte geben sie von allen Häusern einer Stadt die Hausnummer ein. Sobald sie fertig sind mit der eingabe \"fertig\" und enter bestätigen");
         Scanner scanner = new Scanner(System.in);
         boolean giveMoreHouses = true;
@@ -11,13 +16,13 @@ public class MainStreetBuildProblem {
         while (giveMoreHouses) {
             if(scanner.hasNextInt()) {
                 int houseNumber = scanner.nextInt();
-                House house = new House(houseNumber);
+                Algorithmen.House house = new Algorithmen.House(houseNumber);
                 if(houses.isEmpty()){
                     houses.add(house);
                     System.out.println("Das nächste Haus bitte");
                 }else {
                     boolean houseExist = false;
-                    for (House houseForControlOfDuplicate : houses) {
+                    for (Algorithmen.House houseForControlOfDuplicate : houses) {
                         if(houseForControlOfDuplicate.getHouseNumber() == houseNumber){
                             System.out.println("Das Haus existiert bereits");
                             houseExist = true;
@@ -33,7 +38,7 @@ public class MainStreetBuildProblem {
                 giveMoreHouses = false;
             }
         }
-        City city = new City(houses);
+        Algorithmen.City city = new Algorithmen.City(houses);
 
             System.out.println("jetzt geben sie bitte jeweils für jedes Haus seine " +
                     "Nachbarn und die jeweiligen Baukosten an die eine Straße kosten würde");

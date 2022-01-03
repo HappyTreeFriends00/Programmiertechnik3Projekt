@@ -1,3 +1,5 @@
+package Algorithmen;
+
 import java.util.ArrayList;
 
 public class WaterSupplySystem extends AbstractGraph<House> {

@@ -1,3 +1,8 @@
+package Algorithmen.WaterSupplyProblem;
+
+import Algorithmen.House;
+import Algorithmen.WaterSupplySystem;
+
 import java.util.ArrayList;
 
 public class MainWaterSupplyProblem {

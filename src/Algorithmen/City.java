@@ -1,8 +1,12 @@
+package Algorithmen;
+
+import Algorithmen.AbstractGraph;
+
 import java.util.ArrayList;
 
-public class City extends AbstractGraph<House>{
-    private ArrayList<House> allHousesOfTheCity = vertexList;
-    private int[][] ways = edge;
+public class City extends AbstractGraph<House> {
+    public ArrayList<House> allHousesOfTheCity = vertexList;
+    public int[][] ways = edge;
     public static int[][] cityWithStreets;
 
     public City(ArrayList<House> houses){

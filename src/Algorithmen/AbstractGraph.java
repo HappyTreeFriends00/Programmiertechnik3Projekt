@@ -1,8 +1,10 @@
+package Algorithmen;
+
 import java.util.ArrayList;
 
 public abstract class AbstractGraph<T>{
-    protected ArrayList<T> vertexList;
-    protected int[][] edge;
+    public ArrayList<T> vertexList;
+    public int[][] edge;
 
     public AbstractGraph(ArrayList<T> objects){
         this.vertexList = new ArrayList<>();
