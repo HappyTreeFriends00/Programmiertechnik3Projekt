@@ -2,7 +2,7 @@ package Algorithmen.RoadConstructionProblem;
 
 import Algorithmen.City;
 import Algorithmen.House;
-import Algorithmen.RoadConstructionProblem.RoadConstructionCostCalculator;
+import Algorithmen.InvitationsDistributingProblem.InvitationsDistributingRouteCalculator;
 
 import java.util.ArrayList;
 
@@ -90,43 +90,39 @@ public class MainStreetBuildProblem {
         city.addWeightForEdgeInUndirectedGraph(house2, house6, 3);
         city.addWeightForEdgeInUndirectedGraph(house2, house4, 5);
         city.addWeightForEdgeInUndirectedGraph(house2, house5, 4);
-        city.addWeightForEdgeInUndirectedGraph(house3, house2, 3);
         city.addWeightForEdgeInUndirectedGraph(house3, house6, 2);
         city.addWeightForEdgeInUndirectedGraph(house3, house7, 3);
         city.addWeightForEdgeInUndirectedGraph(house3, house8, 4);
-        city.addWeightForEdgeInUndirectedGraph(house3, house1, 5);
-        city.addWeightForEdgeInUndirectedGraph(house4, house1, 4);
         city.addWeightForEdgeInUndirectedGraph(house4, house0, 2);
         city.addWeightForEdgeInUndirectedGraph(house4, house5, 4);
-        city.addWeightForEdgeInUndirectedGraph(house4, house2, 5);
         city.addWeightForEdgeInUndirectedGraph(house5, house0, 3);
         city.addWeightForEdgeInUndirectedGraph(house5, house9, 2);
         city.addWeightForEdgeInUndirectedGraph(house5, house6, 4);
-        city.addWeightForEdgeInUndirectedGraph(house5, house2, 4);
-        city.addWeightForEdgeInUndirectedGraph(house5, house4, 4);
-        city.addWeightForEdgeInUndirectedGraph(house6, house3, 2);
         city.addWeightForEdgeInUndirectedGraph(house6, house8, 3);
-        city.addWeightForEdgeInUndirectedGraph(house6, house2, 3);
-        city.addWeightForEdgeInUndirectedGraph(house6, house5, 4);
         city.addWeightForEdgeInUndirectedGraph(house6, house9, 3);
         city.addWeightForEdgeInUndirectedGraph(house7, house8, 2);
-        city.addWeightForEdgeInUndirectedGraph(house7, house3, 3);
-        city.addWeightForEdgeInUndirectedGraph(house8, house7, 2);
         city.addWeightForEdgeInUndirectedGraph(house8, house9, 4);
-        city.addWeightForEdgeInUndirectedGraph(house8, house3, 4);
-        city.addWeightForEdgeInUndirectedGraph(house8, house6, 3);
-        city.addWeightForEdgeInUndirectedGraph(house9, house8, 4);
-        city.addWeightForEdgeInUndirectedGraph(house9, house5, 2);
         city.addWeightForEdgeInUndirectedGraph(house9, house0, 3);
-        city.addWeightForEdgeInUndirectedGraph(house9, house6, 3);
-        city.addWeightForEdgeInUndirectedGraph(house0, house4, 2);
-        city.addWeightForEdgeInUndirectedGraph(house0, house5, 3);
-        city.addWeightForEdgeInUndirectedGraph(house0, house9, 3);
 
 
         city.printGraphOut(houses, city.edge);
         RoadConstructionCostCalculator calculator = new RoadConstructionCostCalculator();
-        City.cityWithStreets = calculator.calculateMinimalCostToBuildStreets(city);
-        city.printAllHousesWithWayBuildCostOut(City.cityWithStreets);
+        city.printAllHousesWithWayBuildCostOut(calculator.calculateMinimalCostToBuildStreets(city));
+
+        InvitationsDistributingRouteCalculator invitationsDistributingRouteCalculator = new InvitationsDistributingRouteCalculator();
+        ArrayList<House> resultList = invitationsDistributingRouteCalculator.calculateEulerwayOrEulertour(city);
+        int index = 0;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Das erste Haus ist: ");
+        for (House house:resultList) {
+            stringBuilder.append(house.getHouseNumber());
+            stringBuilder.append("\n" );
+            index++;
+            if(!(resultList.size() == index)){
+                stringBuilder.append("von dort aus geht der Postbote weiter zum Haus:");
+            }
+        }
+
+        System.out.println(stringBuilder.toString());
     }
 }

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public class City extends AbstractGraph<House> {
     public ArrayList<House> allHousesOfTheCity = vertexList;
     public int[][] ways = edge;
-    public static int[][] cityWithStreets;
 
     public City(ArrayList<House> houses){
         super(houses);
