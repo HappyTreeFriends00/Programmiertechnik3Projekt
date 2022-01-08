@@ -2,7 +2,7 @@ package Algorithmen;
 
 import java.util.ArrayList;
 
-public abstract class AbstractGraph<T>{
+public abstract class AbstractGraph<T> implements IGetSource{
     public ArrayList<T> vertexList;
     public int[][] edge;
 
@@ -44,5 +44,13 @@ public abstract class AbstractGraph<T>{
             sb.append("\n");
         }
         System.out.println(sb.toString());
+    }
+
+    public abstract IObjectGetName getSource();
+
+    public void setEveryVisitedToNotVisited(ArrayList<? extends IObjectGetName> list){
+        for (IObjectGetName o: list ) {
+                o.setVisited(false);
+        }
     }
 }

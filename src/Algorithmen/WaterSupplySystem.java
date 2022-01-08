@@ -2,7 +2,7 @@ package Algorithmen;
 
 import java.util.ArrayList;
 
-public class WaterSupplySystem extends AbstractGraph<House> {
+public class WaterSupplySystem extends AbstractGraph<House> implements IGetSource {
     private ArrayList<House> allHousesOfTheWaterSupplySystem = vertexList;
     private int[][] directedWaterSupplyWays = edge;
 
@@ -13,15 +13,6 @@ public class WaterSupplySystem extends AbstractGraph<House> {
     public House getSource(){
         for (House house:allHousesOfTheWaterSupplySystem) {
             if(house.isSource()){
-                return house;
-            }
-        }
-        return null;
-    }
-
-    public House getTrap(){
-        for (House house:allHousesOfTheWaterSupplySystem) {
-            if(house.isTrap()){
                 return house;
             }
         }

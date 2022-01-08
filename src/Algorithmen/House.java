@@ -7,6 +7,8 @@ public class House implements IObjectGetName {
     private String surname;
     private int degree;
 
+    private boolean visited = false;
+
     public House(int houseNumber) {
         this.houseNumber = houseNumber;
     }
@@ -49,5 +51,15 @@ public class House implements IObjectGetName {
 
     public void decrementDegree() {
         this.degree--;
+    }
+
+    @Override
+    public void setVisited(boolean visited){
+        this.visited = visited;
+    }
+
+    @Override
+    public boolean isVisited() {
+        return this.visited;
     }
 }
