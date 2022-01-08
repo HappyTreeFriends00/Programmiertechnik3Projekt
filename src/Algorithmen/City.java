@@ -14,6 +14,15 @@ public class City extends AbstractGraph<House> {
         printGraphOut(allHousesOfTheCity, graph);
     }
 
+    public House getHouseWithHouseNumber(int houseNumber){
+        for (House house: vertexList) {
+            if(house.getHouseNumber() == houseNumber){
+                return house;
+            }
+        }
+        throw new IllegalArgumentException("Es scheint kein haus mit dieser hausnummer zu existieren");
+    }
+
     public ArrayList<House> getAllHousesOfCity() {
         return vertexList;
     }

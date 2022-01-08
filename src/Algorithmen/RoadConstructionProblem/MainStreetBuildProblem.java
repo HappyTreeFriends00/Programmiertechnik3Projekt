@@ -5,10 +5,11 @@ import Algorithmen.House;
 import Algorithmen.InvitationsDistributingProblem.InvitationsDistributingRouteCalculator;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class MainStreetBuildProblem {
     public static void main(String[] args) {
-      /*  ArrayList<Algorithmen.House> houses = new ArrayList<>();
+        ArrayList<Algorithmen.House> houses = new ArrayList<>();
         System.out.println("Bitte geben sie von allen Häusern einer Stadt die Hausnummer ein. Sobald sie fertig sind mit der eingabe \"fertig\" und enter bestätigen");
         Scanner scanner = new Scanner(System.in);
         boolean giveMoreHouses = true;
@@ -63,46 +64,7 @@ public class MainStreetBuildProblem {
                     moreWeightWillAdd = false;
                 }
                 System.out.println("Sobald sie fertig sind mit der eingabe \"fertig\" und enter bestätigen");
-            }*/
-
-        House house1 = new House(1);
-        House house2 = new House(2);
-        House house3 = new House(3);
-        House house4 = new House(4);
-        House house5 = new House(5);
-        House house6 = new House(6);
-        House house7 = new House(7);
-        House house8 = new House(8);
-        House house9 = new House(9);
-        House house0 = new House(0);
-        House[] houseArray = {house1, house2, house3, house4, house5, house6, house7, house8, house9, house0};
-        ArrayList<House> houses = new ArrayList<>();
-        for (int i = 0; i < houseArray.length; i++) {
-            houses.add(houseArray[i]);
-        }
-
-
-        City city = new City(houses);
-        city.addWeightForEdgeInUndirectedGraph(house1, house3, 5);
-        city.addWeightForEdgeInUndirectedGraph(house1, house4, 4);
-        city.addWeightForEdgeInUndirectedGraph(house1, house2, 3);
-        city.addWeightForEdgeInUndirectedGraph(house2, house3, 3);
-        city.addWeightForEdgeInUndirectedGraph(house2, house6, 3);
-        city.addWeightForEdgeInUndirectedGraph(house2, house4, 5);
-        city.addWeightForEdgeInUndirectedGraph(house2, house5, 4);
-        city.addWeightForEdgeInUndirectedGraph(house3, house6, 2);
-        city.addWeightForEdgeInUndirectedGraph(house3, house7, 3);
-        city.addWeightForEdgeInUndirectedGraph(house3, house8, 4);
-        city.addWeightForEdgeInUndirectedGraph(house4, house0, 2);
-        city.addWeightForEdgeInUndirectedGraph(house4, house5, 4);
-        city.addWeightForEdgeInUndirectedGraph(house5, house0, 3);
-        city.addWeightForEdgeInUndirectedGraph(house5, house9, 2);
-        city.addWeightForEdgeInUndirectedGraph(house5, house6, 4);
-        city.addWeightForEdgeInUndirectedGraph(house6, house8, 3);
-        city.addWeightForEdgeInUndirectedGraph(house6, house9, 3);
-        city.addWeightForEdgeInUndirectedGraph(house7, house8, 2);
-        city.addWeightForEdgeInUndirectedGraph(house8, house9, 4);
-        city.addWeightForEdgeInUndirectedGraph(house9, house0, 3);
+            }
 
 
         city.printGraphOut(houses, city.edge);
