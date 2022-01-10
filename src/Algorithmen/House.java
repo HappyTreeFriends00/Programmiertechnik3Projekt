@@ -6,7 +6,6 @@ public class House implements IObjectGetName {
     private boolean isTrap;
     private String surname;
     private int degree;
-
     private boolean visited = false;
 
     public House(int houseNumber) {
