@@ -47,4 +47,13 @@ public class City extends AbstractGraph<House> {
         }
         return null;
     }
+
+    public House getTrap(){
+        for (House house:allHousesOfTheCity) {
+            if(house.isTrap()){
+                return house;
+            }
+        }
+        return null;
+    }
 }

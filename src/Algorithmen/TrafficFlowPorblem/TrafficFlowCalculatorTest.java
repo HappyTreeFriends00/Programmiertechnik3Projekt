@@ -2,12 +2,18 @@ package Algorithmen.TrafficFlowPorblem;
 
 import Algorithmen.RoadStops;
 import Algorithmen.RoadSystem;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MainTrafficFlowProblem {
-    public static void main(String[] args) {
+import static org.junit.jupiter.api.Assertions.*;
+
+class TrafficFlowCalculatorTest {
+
+    @Test
+    void calculateOptimalTrafficFlow() {
         RoadStops motorwayEntrance = new RoadStops("motorway entrance", true, false, 1);
         RoadStops firstTrafficLight = new RoadStops("first traffic light", false, false, 2);
         RoadStops secondTrafficLight = new RoadStops("second traffic light", false, false, 3);
@@ -32,5 +38,9 @@ public class MainTrafficFlowProblem {
         TrafficFlowCalculator calculator = new TrafficFlowCalculator();
         roadSystem.printGraphOut(roadSystem.vertexList, calculator.calculateOptimalTrafficFlow(roadSystem));
         System.out.println(calculator.getMaxFlowRate(roadSystem));
+
+        int controlMaxFlowValue = 27;
+
+        Assertions.assertEquals(controlMaxFlowValue, calculator.getMaxFlowRate(roadSystem));
     }
 }

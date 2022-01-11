@@ -27,4 +27,13 @@ public class RoadSystem extends AbstractGraph<RoadStops> {
         }
         return null;
     }
+
+    public RoadStops getTrap(){
+        for (RoadStops stops:allCarsOfRoadSystem) {
+            if(stops.isTrap()){
+                return stops;
+            }
+        }
+        return null;
+    }
 }

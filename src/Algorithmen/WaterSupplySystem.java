@@ -28,4 +28,13 @@ public class WaterSupplySystem extends AbstractGraph<House> implements IGetSourc
         }
         return stringBuilder.toString();
     }
+
+    public House getTrap(){
+        for (House house:allHousesOfTheWaterSupplySystem) {
+            if(house.isTrap()){
+                return house;
+            }
+        }
+        return null;
+    }
 }

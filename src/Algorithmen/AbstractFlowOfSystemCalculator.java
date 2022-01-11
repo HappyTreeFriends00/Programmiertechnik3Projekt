@@ -22,25 +22,30 @@ public abstract class AbstractFlowOfSystemCalculator {
         boolean pathIsComplete = false;
         while (givesMoreExtendedWays){
             for (int i = 0; i < graph.edge.length; i++) {
+                if(restNetwork[graph.vertexList.indexOf(nextNode)][graph.vertexList.indexOf(graph.getTrap())] != 0){
+                    i = graph.vertexList.indexOf(graph.getTrap());
+                }
                 //falls Node eine gewichtete und gerichtete Kante hat
-                if(restNetwork[graph.vertexList.indexOf(nextNode)] [i] != 0 && !graph.vertexList.get(i).isVisited()){
+                if(restNetwork[graph.vertexList.indexOf(nextNode)] [i] != 0 ){
                     //und falls Node seine Kante kleiner ist als der derzeitige maximal fluss
-                    if(restNetwork[graph.vertexList.indexOf(nextNode)] [i] < currentMaxFlow){
-                        //currentMaxFlow wird aktualisiert der Node wird im derzeitigen Pfad gespeichert und der nächste Node wird genommen
-                        currentMaxFlow = restNetwork[graph.vertexList.indexOf(nextNode)] [i];
-                        currentPath.add(nextNode);
-                        nextNode.setVisited(true);
-                        nextNode = graph.vertexList.get(i);
-                        pathIsComplete = false;
-                        break;
-                    }
-                    //ansonsten das gleiche ohne den currentMaxFlow zu aktualisieren
-                    else{
-                        currentPath.add(nextNode);
-                        nextNode.setVisited(true);
-                        nextNode = graph.vertexList.get(i);
-                        pathIsComplete = false;
-                        break;
+                    if(!graph.vertexList.get(i).isVisited()) {
+                        if (restNetwork[graph.vertexList.indexOf(nextNode)][i] < currentMaxFlow) {
+                            //currentMaxFlow wird aktualisiert der Node wird im derzeitigen Pfad gespeichert und der nächste Node wird genommen
+                            currentMaxFlow = restNetwork[graph.vertexList.indexOf(nextNode)][i];
+                            currentPath.add(nextNode);
+                            nextNode.setVisited(true);
+                            nextNode = graph.vertexList.get(i);
+                            pathIsComplete = false;
+                            break;
+                        }
+                        //ansonsten das gleiche ohne den currentMaxFlow zu aktualisieren
+                        else {
+                            currentPath.add(nextNode);
+                            nextNode.setVisited(true);
+                            nextNode = graph.vertexList.get(i);
+                            pathIsComplete = false;
+                            break;
+                        }
                     }
                 }else if(!nextNode.isTrap()){
                     pathIsComplete = true;
@@ -52,7 +57,13 @@ public abstract class AbstractFlowOfSystemCalculator {
                 for(IObjectGetName object: currentPath){
                     if(!object.isTrap()) {
                         restNetwork[graph.vertexList.indexOf(object)][graph.vertexList.indexOf(currentPath.get(currentPath.indexOf(object) + 1))] -= currentMaxFlow;
-                        maxPossibleFlowInWaterSupplySystem[graph.vertexList.indexOf(object)][graph.vertexList.indexOf(currentPath.get(currentPath.indexOf(object) + 1))] += currentMaxFlow;
+                        if(!object.isSource()) {
+                            restNetwork[graph.vertexList.indexOf(currentPath.get(currentPath.indexOf(object) + 1))][graph.vertexList.indexOf(object)] += currentMaxFlow;
+                            maxPossibleFlowInWaterSupplySystem[graph.vertexList.indexOf(currentPath.get(currentPath.indexOf(object) + 1))][graph.vertexList.indexOf(object)] = restNetwork[graph.vertexList.indexOf(object)][graph.vertexList.indexOf(currentPath.get(currentPath.indexOf(object) + 1))];
+                            maxPossibleFlowInWaterSupplySystem[graph.vertexList.indexOf(object)][graph.vertexList.indexOf(currentPath.get(currentPath.indexOf(object) + 1))] = restNetwork[graph.vertexList.indexOf(currentPath.get(currentPath.indexOf(object) + 1))][graph.vertexList.indexOf(object)];
+                        }else{
+                            maxPossibleFlowInWaterSupplySystem[graph.vertexList.indexOf(object)][graph.vertexList.indexOf(currentPath.get(currentPath.indexOf(object) + 1))] += currentMaxFlow;
+                        }
                     }
                 }
                 //reset von currentPath und currentMaxFlow für den nächsten Path
@@ -63,8 +74,10 @@ public abstract class AbstractFlowOfSystemCalculator {
             if(pathIsComplete) {
                 currentPath.add(nextNode);
                 graph.setEveryVisitedToNotVisited(graph.vertexList);
-                restNetwork[graph.vertexList.indexOf(currentPath.get(currentPath.size() -2))][graph.vertexList.indexOf(currentPath.get(currentPath.size() -1))] = 0;
-                restNetwork[graph.vertexList.indexOf(currentPath.get(currentPath.size() -1))][graph.vertexList.indexOf(currentPath.get(currentPath.size() -2))] = 0;
+                if(currentPath.size() > 1) {
+                    restNetwork[graph.vertexList.indexOf(currentPath.get(currentPath.size() - 2))][graph.vertexList.indexOf(currentPath.get(currentPath.size() - 1))] = 0;
+                    restNetwork[graph.vertexList.indexOf(currentPath.get(currentPath.size() - 1))][graph.vertexList.indexOf(currentPath.get(currentPath.size() - 2))] = 0;
+                }
                 //reset von nextNode, currentPath und currentMaxFlow für den nächsten Path
                 currentPath.clear();
                 currentMaxFlow = 99999;

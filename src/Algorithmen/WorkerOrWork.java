@@ -1,17 +1,19 @@
 package Algorithmen;
 
-public class Worker implements IObjectGetName{
+public class WorkerOrWork implements IObjectGetName{
     private boolean visited = false;
     private int workerNumber;
     private boolean isSource;
     private boolean isTrap;
     private String workerName;
+    private boolean isWorker;
 
-    public Worker(int workerNumber, boolean isSource, boolean isTrap, String workerName) {
+    public WorkerOrWork(int workerNumber, boolean isSource, boolean isTrap, String workerName, boolean isWorker) {
         this.workerNumber = workerNumber;
         this.isSource = isSource;
         this.isTrap = isTrap;
         this.workerName = workerName;
+        this.isWorker = isWorker;
     }
 
     @Override
@@ -36,5 +38,17 @@ public class Worker implements IObjectGetName{
 
     public String getWorkerName() {
         return workerName;
+    }
+
+    public int getWorkerOrWorkNumber() {
+        return workerNumber;
+    }
+
+    public boolean isSource() {
+        return isSource;
+    }
+
+    public boolean isWorker() {
+        return isWorker;
     }
 }

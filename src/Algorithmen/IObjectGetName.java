@@ -7,5 +7,6 @@ public interface IObjectGetName {
     boolean isVisited();
     String getName();
     boolean isTrap();
+    boolean isSource();
 
 }

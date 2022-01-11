@@ -15,6 +15,19 @@ public abstract class AbstractGraph<T> implements IGetSource{
         }
     }
 
+    public AbstractGraph(ArrayList<T> objects, T source, T trap){
+        this.vertexList = new ArrayList<>();
+        this.edge = new int[objects.size() + 2][objects.size() + 2];
+        vertexList.add(source);
+        this.edge[vertexList.indexOf(source)] [vertexList.indexOf(source)] = 0;
+        for (T object: objects) {
+            vertexList.add(object);
+            this.edge[vertexList.indexOf(object)] [vertexList.indexOf(object)] = 0;
+        }
+        vertexList.add(trap);
+        this.edge[vertexList.indexOf(trap)] [vertexList.indexOf(trap)] = 0;
+    }
+
     public void addWeightForEdgeInUndirectedGraph(T objectOne, T objectTwo, int weight){
         edge[vertexList.indexOf(objectOne)] [vertexList.indexOf(objectTwo)] = weight;
         edge[vertexList.indexOf(objectTwo)] [vertexList.indexOf(objectOne)] = weight;
@@ -47,6 +60,8 @@ public abstract class AbstractGraph<T> implements IGetSource{
     }
 
     public abstract IObjectGetName getSource();
+
+    public abstract IObjectGetName getTrap();
 
     public void setEveryVisitedToNotVisited(ArrayList<? extends IObjectGetName> list){
         for (IObjectGetName o: list ) {
