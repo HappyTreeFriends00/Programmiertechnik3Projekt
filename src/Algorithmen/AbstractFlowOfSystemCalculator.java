@@ -58,7 +58,7 @@ public abstract class AbstractFlowOfSystemCalculator {
                     if(!object.isTrap()) {
                         restNetwork[graph.vertexList.indexOf(object)][graph.vertexList.indexOf(currentPath.get(currentPath.indexOf(object) + 1))] -= currentMaxFlow;
                         if(!object.isSource()) {
-                            restNetwork[graph.vertexList.indexOf(currentPath.get(currentPath.indexOf(object) + 1))][graph.vertexList.indexOf(object)] += currentMaxFlow;
+                            restNetwork[graph.vertexList.indexOf(currentPath.get(currentPath.indexOf(object) + 1))][graph.vertexList.indexOf(object)] = graph.edge[graph.vertexList.indexOf(object)][graph.vertexList.indexOf(currentPath.get(currentPath.indexOf(object) + 1))] - restNetwork[graph.vertexList.indexOf(object)][graph.vertexList.indexOf(currentPath.get(currentPath.indexOf(object) + 1))];
                             maxPossibleFlowInWaterSupplySystem[graph.vertexList.indexOf(currentPath.get(currentPath.indexOf(object) + 1))][graph.vertexList.indexOf(object)] = restNetwork[graph.vertexList.indexOf(object)][graph.vertexList.indexOf(currentPath.get(currentPath.indexOf(object) + 1))];
                             maxPossibleFlowInWaterSupplySystem[graph.vertexList.indexOf(object)][graph.vertexList.indexOf(currentPath.get(currentPath.indexOf(object) + 1))] = restNetwork[graph.vertexList.indexOf(currentPath.get(currentPath.indexOf(object) + 1))][graph.vertexList.indexOf(object)];
                         }else{
