@@ -11,7 +11,7 @@ public class InvitationsDistributingRouteCalculator {
         int[][] controlGraph = new int[city.edge.length][city.edge.length];
         for (int i = 0; i < city.edge.length; i++) {
             for (int j = 0; j < city.edge.length; j++) {
-                //Wird benötigt damit in keiner Subtour eine Kante+ zweimal abgelaufen wird
+                //Wird benötigt damit in keiner Subtour eine Kante zweimal abgelaufen wird
                 controlGraph[i][j] = city.edge[i][j];
             }
         }
@@ -57,7 +57,7 @@ public class InvitationsDistributingRouteCalculator {
                             subTour.add(nextNode);
                             break;
                     }else{
-                        substituteTourelementWithSubtour(subTour, tour, city, controlGraph,nextNode,nextHouse);
+                        substituteTourElementWithSubtour(subTour, tour, city, controlGraph,nextNode,nextHouse);
                         tourIsFinished = true;
                         startNode = null;
                         for (House house:city.getAllHousesOfCity()) {
@@ -78,7 +78,7 @@ public class InvitationsDistributingRouteCalculator {
     }
     
     
-    public void substituteTourelementWithSubtour(ArrayList<House> subTour, ArrayList<House> tour, City city, int[][] controlGraph, House nextNode, int nextHouse){
+    private void substituteTourElementWithSubtour(ArrayList<House> subTour, ArrayList<House> tour, City city, int[][] controlGraph, House nextNode, int nextHouse){
         subTour.add(city.vertexList.get(nextHouse));
         city.vertexList.get(nextHouse).decrementDegree();
         city.allHousesOfTheCity.get(city.vertexList.indexOf(nextNode)).decrementDegree();
@@ -94,7 +94,7 @@ public class InvitationsDistributingRouteCalculator {
         }
     }
 
-    public boolean isEulerwegOrEulertour(House endNode, House startNode, City city, int nextHouse){
+    private boolean isEulerwegOrEulertour(House endNode, House startNode, City city, int nextHouse){
         if(endNode != null){
             if(!(endNode.getDegree() == 1 & city.vertexList.get(nextHouse) == endNode)){
                 return true;
@@ -110,6 +110,10 @@ public class InvitationsDistributingRouteCalculator {
                 return false;
             }
         }
+    }
+
+    public void makeGraphToAnPossibleEulergraph(){
+
     }
 
 }
