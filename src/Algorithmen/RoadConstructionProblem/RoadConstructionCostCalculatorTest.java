@@ -2,14 +2,10 @@ package Algorithmen.RoadConstructionProblem;
 
 import Algorithmen.City;
 import Algorithmen.House;
-import Algorithmen.InvitationsDistributingProblem.InvitationsDistributingRouteCalculator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class RoadConstructionCostCalculatorTest {
 
@@ -20,11 +16,11 @@ class RoadConstructionCostCalculatorTest {
         House house3 = new House(3);
         House house4 = new House(4);
         House house5 = new House(5);
-        House house6 = new House(6);
-        House house7 = new House(7);
+        House house6 = new House(69);
+        House house7 = new House(70);
         House house8 = new House(8);
-        House house9 = new House(9);
-        House house0 = new House(0);
+        House house9 = new House(900);
+        House house0 = new House(10);
         House[] houseArray = {house1, house2, house3, house4, house5, house6, house7, house8, house9, house0};
         ArrayList<House> houses = new ArrayList<>();
         for (int i = 0; i < houseArray.length; i++) {
