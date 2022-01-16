@@ -61,4 +61,8 @@ public class House implements IObjectGetName {
     public boolean isVisited() {
         return this.visited;
     }
+
+    public void setTrap(boolean trap) {
+        isTrap = trap;
+    }
 }

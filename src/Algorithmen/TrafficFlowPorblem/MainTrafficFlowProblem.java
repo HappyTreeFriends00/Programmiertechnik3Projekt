@@ -76,6 +76,6 @@ public class MainTrafficFlowProblem {
             index++;
         }
         TrafficFlowCalculator calculator = new TrafficFlowCalculator();
-        system.printGraphOut(system.allCarsOfRoadSystem, calculator.calculateOptimalTrafficFlow(system));
+        system.printGraphOut(system.allCarsOfRoadSystem, calculator.getGraphWithMaxFlow(system));
     }
 }

@@ -2,6 +2,7 @@ package Algorithmen.WaterSupplyProblem;
 
 import Algorithmen.House;
 import Algorithmen.WaterSupplySystem;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -46,5 +47,7 @@ class WaterSupplyMaxFlowCalculatorTest {
         WaterSupplyMaxFlowCalculator calculator = new WaterSupplyMaxFlowCalculator();
         waterSupplySystem.printGraphOut(houses,calculator.calculateMaxFlowForWaterSupplySystem(waterSupplySystem));
         System.out.println(calculator.getMaxFlowRate(waterSupplySystem));
+
+        Assertions.assertEquals(22, calculator.getMaxFlowRate(waterSupplySystem));
     }
 }

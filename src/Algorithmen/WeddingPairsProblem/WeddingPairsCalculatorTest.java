@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -65,16 +66,6 @@ class WeddingPairsCalculatorTest {
         personLovesList.addWeightForEdgeInDirectedGraph(tom, ida, 1);
         personLovesList.addWeightForEdgeInDirectedGraph(tom, lena, 1);
 
-        /*personLovesList.addWeightForEdgeInDirectedGraph(marie, felix, 1);
-        personLovesList.addWeightForEdgeInDirectedGraph(susanne, jonas, 1);
-        personLovesList.addWeightForEdgeInDirectedGraph(antonie, felix, 1);
-        personLovesList.addWeightForEdgeInDirectedGraph(antonie, mats, 1);
-        personLovesList.addWeightForEdgeInDirectedGraph(lena, peter, 1);
-        personLovesList.addWeightForEdgeInDirectedGraph(lena, tom, 1);
-        personLovesList.addWeightForEdgeInDirectedGraph(ida, tom, 1);
-        personLovesList.addWeightForEdgeInDirectedGraph(anna, felix, 1);
-        personLovesList.addWeightForEdgeInDirectedGraph(anna, mats, 1);*/
-
 
         WeddingPairsCalculator calculator = new WeddingPairsCalculator();
         personLovesList.printAllPersonsWithTheirPreference(calculator.calculateOptimalListOfWeddingPairs(personLovesList));
@@ -85,6 +76,9 @@ class WeddingPairsCalculatorTest {
         controlPersonList.put(ida,tom);
         controlPersonList.put(antonie,mats);
         Assertions.assertEquals(controlPersonList,calculator.giveListPairMatch(personLovesList));
+        for (Map.Entry<Person,Person> entry: calculator.giveListPairMatch(personLovesList).entrySet()) {
+            System.out.println(entry.getKey().getPersonName() + " passt zu " + entry.getValue().getPersonName());
+        }
 
     }
 }

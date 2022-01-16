@@ -17,4 +17,17 @@ public class TrafficFlowCalculator extends AbstractFlowOfSystemCalculator {
         }
         return maxFlowRate;
     }
+
+    public int[][] getGraphWithMaxFlow(RoadSystem roadSystem){
+        int[][] resultGraph = calculateOptimalTrafficFlow(roadSystem);
+
+        for (int i = 0; i < resultGraph.length; i++) {
+            for (int j = 0; j < resultGraph.length; j++) {
+                if(roadSystem.edge[i][j] == 0){
+                   resultGraph[i][j] = 0;
+                }
+            }
+        }
+        return resultGraph;
+    }
 }

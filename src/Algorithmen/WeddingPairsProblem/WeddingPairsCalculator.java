@@ -12,7 +12,7 @@ public class WeddingPairsCalculator extends AbstractFlowOfSystemCalculator {
     }
 
     public HashMap<Person, Person> giveListPairMatch(PersonLovesList personLovesList){
-        int[][] list = calculateFlowForSystem(personLovesList);
+        int[][] list = calculateOptimalListOfWeddingPairs(personLovesList);
         HashMap<Person, Person> listWithWorkerAndHisWork = new HashMap<>();
         for (int i = 0; i < list.length ; i++) {
             for (int j = 0; j < list.length; j++) {

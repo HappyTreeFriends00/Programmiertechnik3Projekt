@@ -4,43 +4,79 @@ import Algorithmen.House;
 import Algorithmen.WaterSupplySystem;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class MainWaterSupplyProblem {
     public static void main(String[] args) {
-        House wasserwerk = new House(1,"wasserwerk",true, false);
-        House thoma = new House(2,"thoma",false, false);
-        House dogan = new House(6,"dogan",false, false);
-        House adler = new House(7,"adler",false, false);
-        House ilona = new House(4,"ilona",false, false);
-        House club = new House(3,"club",false, false);
-        House bogart = new House(5,"bogar",false, false);
-        House holler = new House(8,"holler",false, false);
-        House supermarkt = new House(9,"supermarkt",false,true);
-        House[] houseArray = {wasserwerk, thoma, club, ilona, bogart, dogan,adler,holler,supermarkt};
-        ArrayList<House> houses = new ArrayList<>();
-        for (int i = 0; i < houseArray.length; i++) {
-            houses.add(houseArray[i]);
+        ArrayList<House> houseArrayList = new ArrayList<>();
+        System.out.println("Bitte geben Sie alle Häuser der Stadt ein. Sobald sie fertig sind mit der eingabe \"fertig\" und enter bestätigen");
+        Scanner scanner = new Scanner(System.in);
+        boolean giveMoreStops = true;
+        boolean givesMoreWeightBetweenNodes = true;
+        int index = 0;
+        while (giveMoreStops) {
+            if (scanner.hasNext()) {
+                String houseName = scanner.next();
+                if (houseName.equals("fertig")) {
+                    giveMoreStops = false;
+                    houseArrayList.get(houseArrayList.size() - 1).setTrap(true);
+                    break;
+                }
+                if (houseArrayList.isEmpty()) {
+                    House house1 = new House(index, houseName, true, false);
+                    houseArrayList.add(house1);
+                    System.out.println("Das nächste House");
+                    index++;
+                } else {
+                    boolean houseExist = false;
+                    for (House houseForControlOfDuplicate : houseArrayList) {
+                        if (houseForControlOfDuplicate.getName().equals(houseName)) {
+                            System.out.println("Das Haus existiert bereits");
+                            houseExist = true;
+                        }
+                    }
+                    if (!houseExist) {
+                        House house = new House(index, houseName, false, false);
+                        houseArrayList.add(house);
+                        System.out.println("Das nächste Haus");
+                        index++;
+                    }
+                }
+            } else {
+                houseArrayList.get(houseArrayList.size() - 1).setTrap(true);
+                giveMoreStops = false;
+            }
         }
-        WaterSupplySystem waterSupplySystem = new WaterSupplySystem(houses);
-        waterSupplySystem.addWeightForEdgeInDirectedGraph(wasserwerk,thoma,15);
-        waterSupplySystem.addWeightForEdgeInDirectedGraph(wasserwerk,ilona,6);
-        waterSupplySystem.addWeightForEdgeInDirectedGraph(wasserwerk,club,12);
-        waterSupplySystem.addWeightForEdgeInDirectedGraph(dogan,adler,5);
-        waterSupplySystem.addWeightForEdgeInDirectedGraph(dogan,bogart,6);
-        waterSupplySystem.addWeightForEdgeInDirectedGraph(ilona,bogart,3);
-        waterSupplySystem.addWeightForEdgeInDirectedGraph(ilona,holler,1);
-        waterSupplySystem.addWeightForEdgeInDirectedGraph(club,adler,5);
-        waterSupplySystem.addWeightForEdgeInDirectedGraph(club,holler,5);
-        waterSupplySystem.addWeightForEdgeInDirectedGraph(adler,supermarkt,10);
-        waterSupplySystem.addWeightForEdgeInDirectedGraph(bogart,supermarkt,10);
-        waterSupplySystem.addWeightForEdgeInDirectedGraph(holler,supermarkt,7);
-        waterSupplySystem.addWeightForEdgeInDirectedGraph(thoma,dogan,8);
+        WaterSupplySystem waterSupplySystem = new WaterSupplySystem(houseArrayList);
 
-        waterSupplySystem.printGraphOut(houses, waterSupplySystem.edge);
-        System.out.println(waterSupplySystem.getListOfAllHousesWithTheirSurnames());
+        System.out.println("Als nächstes braucht die Software noch die Kapazität und die Richtung von einem Haus zum andern, und wie viel Wasser fliesen kann");
+
+        while (givesMoreWeightBetweenNodes) {
+            System.out.println("Das erste Haus");
+            if (scanner.hasNext()) {
+                String firstHouse = scanner.next();
+                String secondeHouse = null;
+                int weight = 0;
+                if (firstHouse.equals("fertig")) {
+                    givesMoreWeightBetweenNodes = false;
+                    break;
+                }
+                System.out.println("Das zweite Haus bitte");
+                if (scanner.hasNext()) {
+                    secondeHouse = scanner.next();
+                }
+                System.out.println("Und noch die Kapazität wie viele Wasser fliesen kann");
+                if (scanner.hasNextInt()) {
+                    weight = scanner.nextInt();
+                }
+                waterSupplySystem.addWeightForEdgeInDirectedGraph(waterSupplySystem.findHouseWithSurname(firstHouse), waterSupplySystem.findHouseWithSurname(secondeHouse), weight);
+            }
+        }
+
         WaterSupplyMaxFlowCalculator calculator = new WaterSupplyMaxFlowCalculator();
-        waterSupplySystem.printGraphOut(houses,calculator.calculateMaxFlowForWaterSupplySystem(waterSupplySystem));
-        System.out.println(calculator.getMaxFlowRate(waterSupplySystem));
+
+        calculator.getMaxFlowRate(waterSupplySystem);
 
     }
+
 }

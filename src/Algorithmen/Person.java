@@ -51,4 +51,8 @@ public class Person implements IObjectGetName{
     public boolean isFemale() {
         return isFemale;
     }
+
+    public void setTrap(boolean trap) {
+        isTrap = trap;
+    }
 }

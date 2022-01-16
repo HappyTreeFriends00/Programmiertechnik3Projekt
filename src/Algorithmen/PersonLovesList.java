@@ -66,4 +66,12 @@ public class PersonLovesList extends AbstractGraph<Person> {
 
         }
     }
+    public Person findPersonWithSurname(String name){
+        for (Person person:allPersonOfTheList) {
+            if(person.getPersonName().equals(name)){
+                return person;
+            }
+        }
+        throw new IllegalArgumentException("Stop existiert nicht");
+    }
 }

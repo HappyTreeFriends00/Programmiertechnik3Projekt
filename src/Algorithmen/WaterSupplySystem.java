@@ -37,4 +37,13 @@ public class WaterSupplySystem extends AbstractGraph<House> implements IGetSourc
         }
         return null;
     }
+
+    public House findHouseWithSurname(String name){
+        for (House house:allHousesOfTheWaterSupplySystem) {
+            if(house.getSurname().equals(name)){
+                return house;
+            }
+        }
+        throw new IllegalArgumentException("Stop existiert nicht");
+    }
 }

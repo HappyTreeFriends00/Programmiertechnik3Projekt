@@ -36,7 +36,7 @@ class TrafficFlowCalculatorTest {
 
         roadSystem.printGraphOut(roadSystem.vertexList, roadSystem.getStreets());
         TrafficFlowCalculator calculator = new TrafficFlowCalculator();
-        roadSystem.printGraphOut(roadSystem.vertexList, calculator.calculateOptimalTrafficFlow(roadSystem));
+        roadSystem.printGraphOut(roadSystem.vertexList, calculator.getGraphWithMaxFlow(roadSystem));
         System.out.println(calculator.getMaxFlowRate(roadSystem));
 
         int controlMaxFlowValue = 27;
