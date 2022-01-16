@@ -1,6 +1,5 @@
 package Algorithmen.RoadConstructionProblem;
 
-import Algorithmen.City;
 import Algorithmen.House;
 import Algorithmen.InvitationsDistributingProblem.InvitationsDistributingRouteCalculator;
 
@@ -73,22 +72,21 @@ public class MainStreetBuildProblem {
 
         System.out.println("Möchten Sie nun noch schauen ob es in dem für Sie berechneten Wegnetz einen optimalen Weg für den Postboten gibt?");
         System.out.println("y für yes, n für no: y/n");
-
-        if (scanner.hasNext()) {
+        scanner.next();
+        if (scanner.hasNext() && !scanner.next().equals("n")) {
             ArrayList<House> resultList = null;
             if (scanner.next().equals("y")) {
                 InvitationsDistributingRouteCalculator invitationsDistributingRouteCalculator = new InvitationsDistributingRouteCalculator();
                 try {
                     resultList = invitationsDistributingRouteCalculator.calculateEulerwayOrEulertour(city);
-                }catch (Exception e){
-                    System.out.println("Wir können den Graphen zu einen Eulergraphen umwandeln, das kann notwendig sein falls zum Beispiel jeder Weg zweimal gelaufen werden muss. Soll der Graph umgewandelt werden? \"y für yes, n für no: y/n\"");
+                } catch (Exception e) {
+                    /*System.out.println("Wir können den Graphen zu einen Eulergraphen umwandeln, das kann notwendig sein, falls zum Beispiel jeder Weg zweimal gelaufen werden muss. Soll der Graph umgewandelt werden? \"y für yes, n für no: y/n\"");
                     if(scanner.next().equals("y")){
-                        invitationsDistributingRouteCalculator.makeGraphToAnPossibleEulergraph();
-                        resultList = invitationsDistributingRouteCalculator.calculateEulerwayOrEulertour(city);
-                    }else{
-                        System.out.println("Prozess beendet");
-                        return;
-                    }
+                        resultList = invitationsDistributingRouteCalculator.calculateEulerwayOrEulertour(invitationsDistributingRouteCalculator.makeGraphToAnPossibleEulergraph(city));
+                    }else{*/
+                    System.out.println("Prozess beendet");
+                    return;
+                    //}
                 }
                 int index = 0;
                 StringBuilder stringBuilder = new StringBuilder();
@@ -104,7 +102,7 @@ public class MainStreetBuildProblem {
 
                 System.out.println(stringBuilder.toString());
             }
-        }else{
+        } else {
             System.out.println("Prozess beendet");
         }
     }

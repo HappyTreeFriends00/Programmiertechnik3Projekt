@@ -36,4 +36,13 @@ public class RoadSystem extends AbstractGraph<RoadStops> {
         }
         return null;
     }
+
+    public RoadStops findRoadStopWithName(String name){
+        for (RoadStops stop:allCarsOfRoadSystem) {
+            if(stop.getRoadStopName().equals(name)){
+                return stop;
+            }
+        }
+        throw new IllegalArgumentException("Stop existiert nicht");
+    }
 }

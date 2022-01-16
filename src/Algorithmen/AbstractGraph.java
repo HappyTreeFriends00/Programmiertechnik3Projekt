@@ -52,7 +52,6 @@ public abstract class AbstractGraph<T> implements IGetSource{
         sb.append("     ");
         lengthHorizontal[0] = sb.toString().length();
         int index = 1;
-        int entireLength = 0;
         for (IObjectGetName object: vertexList){
             sb.append(object.getName() + "      ");
             lengthHorizontal[index] = sb.toString().length();

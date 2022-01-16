@@ -14,12 +14,12 @@ class TrafficFlowCalculatorTest {
 
     @Test
     void calculateOptimalTrafficFlow() {
-        RoadStops motorwayEntrance = new RoadStops("motorway entrance", true, false, 1);
-        RoadStops firstTrafficLight = new RoadStops("first traffic light", false, false, 2);
-        RoadStops secondTrafficLight = new RoadStops("second traffic light", false, false, 3);
-        RoadStops thirdTrafficLight = new RoadStops("third traffic light", false, false, 4);
-        RoadStops fourthTrafficLight = new RoadStops("fourth traffic light", false, false, 5);
-        RoadStops parkingSpot = new RoadStops("parking spot", false, true, 6);
+        RoadStops motorwayEntrance = new RoadStops("motorway entrance", true, false);
+        RoadStops firstTrafficLight = new RoadStops("first traffic light", false, false);
+        RoadStops secondTrafficLight = new RoadStops("second traffic light", false, false);
+        RoadStops thirdTrafficLight = new RoadStops("third traffic light", false, false);
+        RoadStops fourthTrafficLight = new RoadStops("fourth traffic light", false, false);
+        RoadStops parkingSpot = new RoadStops("parking spot", false, true);
 
         ArrayList<RoadStops> roadStops = new ArrayList<>(Arrays.asList(motorwayEntrance, firstTrafficLight, secondTrafficLight, thirdTrafficLight, fourthTrafficLight, parkingSpot));
         RoadSystem roadSystem = new RoadSystem(roadStops);

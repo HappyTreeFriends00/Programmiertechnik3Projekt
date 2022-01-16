@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class FireworkChoreographieCalculator {
 
-    private ArrayList<Firework> calculateExpirationOfFirework(ArrayList<Firework> fireworkArrayList, Firework startNode){
+    public ArrayList<Firework> calculateExpirationOfFirework(ArrayList<Firework> fireworkArrayList, Firework startNode){
         Queue<Firework> queue = new Queue<>();
         queue.enqueue(startNode);
         ArrayList<Firework> traversedNode = new ArrayList<>();
@@ -21,6 +21,7 @@ public class FireworkChoreographieCalculator {
             if(!traversedNode.contains(currentNode) | currentNode == startNode) {
                 for (Firework firework : currentNode.getFollowingNodes()) {
                     queue.enqueue(firework);
+                    firework.removeFollowingFirecracker(currentNode);
                 }
                 if (currentNode != startNode) {
                     traversedNode.add(currentNode);
@@ -32,9 +33,11 @@ public class FireworkChoreographieCalculator {
 
     public String toStringExpirationOfFirework(ArrayList<Firework> fireworkArrayList, Firework startNode){
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Zuerst entzündet der Feuerwerkskörper ");
         int order = 1;
         for (Firework firework:calculateExpirationOfFirework(fireworkArrayList, startNode)) {
             stringBuilder.append(order + ": " + firework.getFirecrackerName() + "\n");
+            stringBuilder.append("Danach ");
             order++;
         }
         return stringBuilder.toString();

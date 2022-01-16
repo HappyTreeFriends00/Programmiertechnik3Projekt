@@ -20,7 +20,20 @@ public class Firework {
         return firecrackerName;
     }
 
+    public Firework findFireworkWithName(String firecrackerName, ArrayList<Firework> fireworkArrayList){
+        for (Firework firecracker:fireworkArrayList) {
+            if(firecracker.getFirecrackerName().equals(firecrackerName)){
+                return firecracker;
+            }
+        }
+        throw new IllegalArgumentException("keine Feuerwerkskörper mit diesem Namen vorhanden");
+    }
+
     public void addFollowingFirecracker(Firework... followingFirework){
         Collections.addAll(followingNodes, followingFirework);
+    }
+
+    public void removeFollowingFirecracker(Firework firework){
+        this.followingNodes.remove(firework);
     }
 }

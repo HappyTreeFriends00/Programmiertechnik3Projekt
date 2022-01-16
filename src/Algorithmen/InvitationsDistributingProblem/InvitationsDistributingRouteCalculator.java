@@ -4,6 +4,8 @@ import Algorithmen.City;
 import Algorithmen.House;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class InvitationsDistributingRouteCalculator {
    
@@ -112,8 +114,35 @@ public class InvitationsDistributingRouteCalculator {
         }
     }
 
-    public void makeGraphToAnPossibleEulergraph(){
+   /* public City makeGraphToAnPossibleEulergraph(City city){
+        HashMap<House, House> connectedHouse = new HashMap<>();
+        for (int k = 0; k < city.edge.length; k++) {
+            for (int i = 0; i < city.edge.length; i++) {
+                if (city.edge[k][i] != 0) {
+                    city.vertexList.add(new House(city.vertexList.get(k).getHouseNumber()));
+                    connectedHouse.put(city.vertexList.get(i), city.vertexList.get(city.vertexList.size() - 1));
+                }
+            }
+          }
 
-    }
+        City newCity = new City(city.vertexList);
+        for (int i = 0; i < city.edge.length; i++) {
+            for (int j = 0; j < city.edge.length; j++) {
+                newCity.addWeightForEdgeInUndirectedGraph(city.vertexList.get(i),city.vertexList.get(j),city.edge[i][j]);
+            }
+        }
+        for (Map.Entry<House, House> entry: connectedHouse.entrySet()) {
+            newCity.addWeightForEdgeInUndirectedGraph(entry.getKey(), entry.getValue(), 1);
+        }
+
+        for (int j = 0; j < city.edge.length; j++) {
+            for (int i = city.edge.length; i < newCity.edge.length; i++) {
+                if (newCity.vertexList.get(j).getHouseNumber() == newCity.vertexList.get(i).getHouseNumber()) {
+                    newCity.addWeightForEdgeInUndirectedGraph(newCity.vertexList.get(i),newCity.vertexList.get(j), 1 );
+                }
+            }
+        }
+        return newCity;
+    }*/
 
 }
