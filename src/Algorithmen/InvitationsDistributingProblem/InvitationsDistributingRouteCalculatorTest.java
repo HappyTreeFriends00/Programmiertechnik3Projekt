@@ -75,7 +75,7 @@ class InvitationsDistributingRouteCalculatorTest {
         Assertions.assertIterableEquals(controlList, resultList);
     }
 
-   /* @Test
+   @Test
     void makeGraphToAnPossibleEulergraphTest(){
         House house1 = new House(1);
         House house2 = new House(2);
@@ -105,11 +105,11 @@ class InvitationsDistributingRouteCalculatorTest {
         InvitationsDistributingRouteCalculator calculator = new InvitationsDistributingRouteCalculator();
         City solutionCity = calculator.makeGraphToAnPossibleEulergraph(city);
         city.printGraphOut(solutionCity.vertexList, solutionCity.edge);
-        //calculator.calculateEulerwayOrEulertour();
+        calculator.calculateEulerwayOrEulertour(city);
 
 
 
 
-    }*/
+    }
 
 }
