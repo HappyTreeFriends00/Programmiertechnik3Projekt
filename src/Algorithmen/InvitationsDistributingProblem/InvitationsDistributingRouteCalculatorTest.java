@@ -105,11 +105,7 @@ class InvitationsDistributingRouteCalculatorTest {
         InvitationsDistributingRouteCalculator calculator = new InvitationsDistributingRouteCalculator();
         City solutionCity = calculator.makeGraphToAnPossibleEulergraph(city);
         city.printGraphOut(solutionCity.vertexList, solutionCity.edge);
-        calculator.calculateEulerwayOrEulertour(city);
-
-
-
-
+        calculator.calculateEulerwayOrEulertour(solutionCity);
     }
 
 }

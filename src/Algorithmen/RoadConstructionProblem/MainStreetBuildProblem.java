@@ -51,7 +51,7 @@ public class MainStreetBuildProblem {
                     int houseNumberTwo = scanner1.nextInt();
                     System.out.println("Und die Baukosten letztlich ohne Nachkommastelle");
                     int weight = scanner1.nextInt();
-                    city.addWeightForEdgeInUndirectedGraph(city.getHouseWithHouseNumber(houseNumberOne), city.getHouseWithHouseNumber(houseNumberTwo), weight);
+                    city.addWeightForEdgeInUndirectedGraph(city.findHouseWithHouseNumber(houseNumberOne), city.findHouseWithHouseNumber(houseNumberTwo), weight);
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("Einer der Häuser existiert nicht. Bitte versuchen sie es erneut");
                     givesMoreWeightBetweenNodes = false;

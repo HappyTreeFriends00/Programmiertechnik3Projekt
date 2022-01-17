@@ -14,7 +14,7 @@ public class City extends AbstractGraph<House> {
         printGraphOut(allHousesOfTheCity, graph);
     }
 
-    public House getHouseWithHouseNumber(int houseNumber){
+    public House findHouseWithHouseNumber(int houseNumber){
         for (House house: vertexList) {
             if(house.getHouseNumber() == houseNumber){
                 return house;
@@ -37,6 +37,12 @@ public class City extends AbstractGraph<House> {
         edge[vertexList.indexOf(objectTwo)] [vertexList.indexOf(objectOne)] = weight;
         objectOne.incrementDegree();
         objectTwo.incrementDegree();
+    }
+
+    public void addWeightForEdgeInUndirectedGraphAndOnlyOfObjectOneWillIncrementDegree(House objectOne, House objectTwo, int weight){
+        edge[vertexList.indexOf(objectOne)] [vertexList.indexOf(objectTwo)] = weight;
+        edge[vertexList.indexOf(objectTwo)] [vertexList.indexOf(objectOne)] = weight;
+        objectOne.incrementDegree();
     }
 
     public House getSource(){

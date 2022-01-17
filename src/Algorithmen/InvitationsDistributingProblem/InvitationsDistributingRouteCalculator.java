@@ -2,11 +2,9 @@ package Algorithmen.InvitationsDistributingProblem;
 
 import Algorithmen.City;
 import Algorithmen.House;
+import sun.awt.image.ImageWatched;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 
 public class InvitationsDistributingRouteCalculator {
    
@@ -116,24 +114,42 @@ public class InvitationsDistributingRouteCalculator {
     }
 
    public City makeGraphToAnPossibleEulergraph(City city){
-       for (int j = 0; j < city.allHousesOfTheCity.size(); j++) {
-           for (int k = 0; k < city.allHousesOfTheCity.size(); k++) {
+       LinkedHashMap<House,House> connectedHouseHashMap = new LinkedHashMap<>();
+       for (int j = 0; j < city.edge.length; j++) {
+           for (int k = 0; k < city.edge.length; k++) {
                if (city.edge[j][k]!= 0){
-                   city.allHousesOfTheCity.add(new House(city.allHousesOfTheCity.get(j).getHouseNumber()));
+                   House house = new House(city.allHousesOfTheCity.get(j).getHouseNumber());
+                   city.allHousesOfTheCity.add(house);
+                   connectedHouseHashMap.put(house, city.allHousesOfTheCity.get(k));
                }
            }
        }
+
        City newCity = new City(city.allHousesOfTheCity);
-       for (int j = 0; j < city.allHousesOfTheCity.size(); j++) {
-           for (int k = 0; k < city.allHousesOfTheCity.size(); k++) {
-               if (city.edge[j][k]!= 0){
+       for (int j = 0; j < city.edge.length; j++) {
+           for (int k = 0; k < city.edge.length; k++) {
+                    newCity.edge[j][k] = city.edge[j][k];
+           }
+       }
 
+       for (Map.Entry<House,House> entry: connectedHouseHashMap.entrySet()) {
+           newCity.addWeightForEdgeInUndirectedGraph(entry.getKey(),entry.getValue(),1);
+       }
+
+       for (int i = city.edge.length; i < newCity.allHousesOfTheCity.size(); i++) {
+           for (int j = 0; j < city.edge.length; j++) {
+               if(newCity.edge[i][j] != 0){
+                   for (Map.Entry<House,House> entry: connectedHouseHashMap.entrySet()) {
+                       if (entry.getKey().getHouseNumber() == newCity.allHousesOfTheCity.get(j).getHouseNumber() &&
+                               newCity.edge[city.allHousesOfTheCity.indexOf(entry.getKey())][newCity.allHousesOfTheCity.indexOf(newCity.findHouseWithHouseNumber(newCity.allHousesOfTheCity.get(i).getHouseNumber()))] != 0) {
+                           newCity.addWeightForEdgeInUndirectedGraphAndOnlyOfObjectOneWillIncrementDegree(newCity.allHousesOfTheCity.get(i), entry.getKey(), 1);
+                       }
+                   }
                }
            }
        }
 
-       int i = 0;
-        return null;
+       int i= 0;
+       return newCity;
     }
-
 }
