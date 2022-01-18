@@ -73,9 +73,17 @@ public class MainWaterSupplyProblem {
             }
         }
 
-        WaterSupplyMaxFlowCalculator calculator = new WaterSupplyMaxFlowCalculator();
+        System.out.println("Bitte geben Sie nun ein wie viel Wasser täglich Fliesen soll");
+        if (scanner.hasNextInt()) {
+            int flow = scanner.nextInt();
+            WaterSupplyMaxFlowCalculator calculator = new WaterSupplyMaxFlowCalculator();
 
-        calculator.getMaxFlowRate(waterSupplySystem);
+            if(calculator.getMaxFlowRate(waterSupplySystem) < flow){
+                System.out.println("Ihre Erwartungen wurden erfüllt insgesamt können: " + calculator.getMaxFlowRate(waterSupplySystem) + " m^3/s fliesen" );
+            }else{
+                System.out.println("Sie sollten neue Leitungen anschaffen denn insgesamt können: " + calculator.getMaxFlowRate(waterSupplySystem) + " m^3/s fliesen" );
+            }
+        }
 
     }
 
