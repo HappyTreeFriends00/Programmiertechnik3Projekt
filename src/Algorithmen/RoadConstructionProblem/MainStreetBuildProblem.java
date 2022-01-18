@@ -51,7 +51,9 @@ public class MainStreetBuildProblem {
                     int houseNumberTwo = scanner1.nextInt();
                     System.out.println("Und die Baukosten letztlich ohne Nachkommastelle");
                     int weight = scanner1.nextInt();
-                    city.addWeightForEdgeInUndirectedGraph(city.findHouseWithHouseNumber(houseNumberOne), city.findHouseWithHouseNumber(houseNumberTwo), weight);
+                    if(city.edge[city.allHousesOfTheCity.indexOf(city.findHouseWithHouseNumber(houseNumberOne))][city.allHousesOfTheCity.indexOf(city.findHouseWithHouseNumber(houseNumberTwo))] == 0 ){
+                        city.addWeightForEdgeInUndirectedGraph(city.findHouseWithHouseNumber(houseNumberOne), city.findHouseWithHouseNumber(houseNumberTwo), weight);
+                   }
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("Einer der Häuser existiert nicht. Bitte versuchen sie es erneut");
                     givesMoreWeightBetweenNodes = false;
@@ -72,35 +74,38 @@ public class MainStreetBuildProblem {
 
         System.out.println("Möchten Sie nun noch schauen ob es in dem für Sie berechneten Wegnetz einen optimalen Weg für den Postboten gibt?");
         System.out.println("y für yes, n für no: y/n");
-        scanner.next();
-        if (scanner.hasNext() && !scanner.next().equals("n")) {
-            ArrayList<House> resultList = null;
-            if (scanner.next().equals("y")) {
-                InvitationsDistributingRouteCalculator invitationsDistributingRouteCalculator = new InvitationsDistributingRouteCalculator();
-                try {
-                    resultList = invitationsDistributingRouteCalculator.calculateEulerwayOrEulertour(city);
-                } catch (Exception e) {
-                    /*System.out.println("Wir können den Graphen zu einen Eulergraphen umwandeln, das kann notwendig sein, falls zum Beispiel jeder Weg zweimal gelaufen werden muss. Soll der Graph umgewandelt werden? \"y für yes, n für no: y/n\"");
-                    if(scanner.next().equals("y")){
-                        resultList = invitationsDistributingRouteCalculator.calculateEulerwayOrEulertour(invitationsDistributingRouteCalculator.makeGraphToAnPossibleEulergraph(city));
-                    }else{*/
-                    System.out.println("Prozess beendet");
-                    return;
-                    //}
-                }
-                int index = 0;
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("Das erste Haus ist: ");
-                for (House house : resultList) {
-                    stringBuilder.append(house.getHouseNumber());
-                    stringBuilder.append("\n");
-                    index++;
-                    if (!(resultList.size() == index)) {
-                        stringBuilder.append("von dort aus geht der Postbote weiter zum Haus:");
+        if (scanner.hasNext()) {
+            String nextString = scanner.next();
+            if(!nextString.equals("n")) {
+                ArrayList<House> resultList = null;
+                if (scanner.next().equals("y")) {
+                    InvitationsDistributingRouteCalculator invitationsDistributingRouteCalculator = new InvitationsDistributingRouteCalculator();
+                    try {
+                        resultList = invitationsDistributingRouteCalculator.calculateEulerwayOrEulertour(city);
+                    } catch (Exception e) {
+                        System.out.println("Wir können den Graphen zu einen Eulergraphen umwandeln, das kann notwendig sein, falls zum Beispiel jeder Weg zweimal gelaufen werden muss. Soll der Graph umgewandelt werden? \"y für yes, n für no: y/n\"");
+                        if (scanner.next().equals("y")) {
+                            resultList = invitationsDistributingRouteCalculator.calculateEulerwayOrEulertour(invitationsDistributingRouteCalculator.makeGraphToAnPossibleEulergraph(city));
+                        } else {
+                            System.out.println("Prozess beendet");
+                            return;
+                        }
                     }
+                    int index = 0;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("Das erste Haus ist: ");
+                    for (House house : resultList) {
+                        if(house.isNecessary()) {
+                            stringBuilder.append(house.getHouseNumber());
+                            stringBuilder.append("\n");
+                            index++;
+                            if (!(resultList.size() == index)) {
+                                stringBuilder.append("von dort aus geht der Postbote weiter zum Haus:");
+                            }
+                        }
+                    }
+                    System.out.println(stringBuilder.toString());
                 }
-
-                System.out.println(stringBuilder.toString());
             }
         } else {
             System.out.println("Prozess beendet");

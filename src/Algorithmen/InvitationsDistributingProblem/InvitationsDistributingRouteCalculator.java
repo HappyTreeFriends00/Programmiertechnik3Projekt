@@ -118,7 +118,7 @@ public class InvitationsDistributingRouteCalculator {
        for (int j = 0; j < city.edge.length; j++) {
            for (int k = 0; k < city.edge.length; k++) {
                if (city.edge[j][k]!= 0){
-                   House house = new House(city.allHousesOfTheCity.get(j).getHouseNumber());
+                   House house = new House(city.allHousesOfTheCity.get(j).getHouseNumber(), false);
                    city.allHousesOfTheCity.add(house);
                    connectedHouseHashMap.put(house, city.allHousesOfTheCity.get(k));
                }
@@ -148,8 +148,6 @@ public class InvitationsDistributingRouteCalculator {
                }
            }
        }
-
-       int i= 0;
        return newCity;
     }
 }

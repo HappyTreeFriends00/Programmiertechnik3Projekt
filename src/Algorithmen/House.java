@@ -7,6 +7,7 @@ public class House implements IObjectGetName {
     private String surname;
     private int degree;
     private boolean visited = false;
+    private boolean isNecessary = true;
 
     public House(int houseNumber) {
         this.houseNumber = houseNumber;
@@ -17,6 +18,11 @@ public class House implements IObjectGetName {
         this.isSource = isSource;
         this.isTrap = isTrap;
         this.surname = surname;
+    }
+
+    public House(int houseNumber, boolean isNecessary) {
+        this.houseNumber = houseNumber;
+        this.isNecessary = isNecessary;
     }
 
     @Override
@@ -64,5 +70,9 @@ public class House implements IObjectGetName {
 
     public void setTrap(boolean trap) {
         isTrap = trap;
+    }
+
+    public boolean isNecessary() {
+        return isNecessary;
     }
 }
