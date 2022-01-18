@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 class RoadConstructionCostCalculatorTest {
 
@@ -23,9 +24,7 @@ class RoadConstructionCostCalculatorTest {
         House house0 = new House(10);
         House[] houseArray = {house1, house2, house3, house4, house5, house6, house7, house8, house9, house0};
         ArrayList<House> houses = new ArrayList<>();
-        for (int i = 0; i < houseArray.length; i++) {
-            houses.add(houseArray[i]);
-        }
+        Collections.addAll(houses, houseArray);
 
 
         City city = new City(houses);

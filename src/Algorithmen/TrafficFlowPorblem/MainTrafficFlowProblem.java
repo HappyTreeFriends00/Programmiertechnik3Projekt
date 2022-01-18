@@ -4,7 +4,6 @@ import Algorithmen.RoadStops;
 import Algorithmen.RoadSystem;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class MainTrafficFlowProblem {
@@ -29,7 +28,7 @@ public class MainTrafficFlowProblem {
                 } else {
                     boolean houseExist = false;
                     for (RoadStops roadstopForControlOfDuplicate : stopsArrayList) {
-                        if (roadstopForControlOfDuplicate.getName() == roadStop) {
+                        if (roadstopForControlOfDuplicate.getName().equals(roadStop)) {
                             System.out.println("Der Verkehrssystemstop existiert bereits");
                             houseExist = true;
                         }

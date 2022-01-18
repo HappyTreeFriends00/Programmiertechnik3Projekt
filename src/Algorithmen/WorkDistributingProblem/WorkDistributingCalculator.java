@@ -1,11 +1,8 @@
 package Algorithmen.WorkDistributingProblem;
 
 import Algorithmen.AbstractFlowOfSystemCalculator;
-import Algorithmen.IObjectGetName;
 import Algorithmen.WorkDistributingList;
 import Algorithmen.WorkerOrWork;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class WorkDistributingCalculator extends AbstractFlowOfSystemCalculator {

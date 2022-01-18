@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class WaterSupplySystem extends AbstractGraph<House> implements IGetSource {
     private ArrayList<House> allHousesOfTheWaterSupplySystem = vertexList;
-    private int[][] directedWaterSupplyWays = edge;
 
     public WaterSupplySystem(ArrayList<House> houses) {
         super(houses);
@@ -24,7 +23,7 @@ public class WaterSupplySystem extends AbstractGraph<House> implements IGetSourc
         for (House house: allHousesOfTheWaterSupplySystem) {
             stringBuilder.append(house.getSurname());
             stringBuilder.append(": ");
-            stringBuilder.append(house.getName() + "\n");
+            stringBuilder.append(house.getName()).append("\n");
         }
         return stringBuilder.toString();
     }

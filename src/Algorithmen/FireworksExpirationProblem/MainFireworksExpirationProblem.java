@@ -9,7 +9,6 @@ public class MainFireworksExpirationProblem {
         System.out.println("Bitte geben Sie jedes Feuerwerkskörper ein. Beginnend mit dem ersten Feuewerkskörper der entzündet wird. \nSobald sie fertig sind mit der eingabe \"1\" und enter bestätigen");
         Scanner scanner = new Scanner(System.in);
         boolean giveMoreHouses = true;
-        boolean givesMoreWeightBetweenNodes = true;
         while (giveMoreHouses) {
             if(scanner.hasNextInt()){
                 int zahl = scanner.nextInt();
@@ -60,6 +59,6 @@ public class MainFireworksExpirationProblem {
             System.out.println("Sie haben keine Feuerwerkskörper eingegeben");
         }
         FireworkChoreographieCalculator calculator = new FireworkChoreographieCalculator();
-        System.out.println(calculator.toStringExpirationOfFirework(fireworkArrayList, fireworkArrayList.get(0)));
+        System.out.println(calculator.toStringExpirationOfFirework(fireworkArrayList.get(0)));
     }
 }

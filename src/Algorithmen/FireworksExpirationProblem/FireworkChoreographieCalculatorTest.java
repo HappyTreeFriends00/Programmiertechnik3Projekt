@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class FireworkChoreographieCalculatorTest {
 
     @Test
@@ -42,20 +40,10 @@ class FireworkChoreographieCalculatorTest {
         frosch.addFollowingFirecracker(raketeBlau);
         frosch.addFollowingFirecracker(wunderkerze);
 
-        ArrayList<Firework> fireworks = new ArrayList<>();
-        fireworks.add(raketeBlau);
-        fireworks.add(raketeGelb);
-        fireworks.add(raketeRot);
-        fireworks.add(frosch);
-        fireworks.add(vulkan);
-        fireworks.add(goldenFeuerring);
-        fireworks.add(wunderkerze);
-        fireworks.add(chinaBoeller);
-
         FireworkChoreographieCalculator calculator = new FireworkChoreographieCalculator();
-        System.out.println(calculator.toStringExpirationOfFirework(fireworks,chinaBoeller));
+        System.out.println(calculator.toStringExpirationOfFirework(chinaBoeller));
         ArrayList<Firework> controlArray = new ArrayList<>(Arrays.asList(chinaBoeller,raketeRot,raketeGelb,wunderkerze,goldenFeuerring,frosch,vulkan,raketeBlau));
 
-        Assertions.assertEquals(controlArray, calculator.calculateExpirationOfFirework(fireworks, chinaBoeller));
+        Assertions.assertEquals(controlArray, calculator.calculateExpirationOfFirework(chinaBoeller));
     }
 }

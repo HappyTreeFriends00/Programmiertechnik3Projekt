@@ -2,7 +2,6 @@ package Algorithmen.InvitationsDistributingProblem;
 
 import Algorithmen.City;
 import Algorithmen.House;
-import sun.awt.image.ImageWatched;
 
 import java.util.*;
 
@@ -11,10 +10,8 @@ public class InvitationsDistributingRouteCalculator {
     public ArrayList<House> calculateEulerwayOrEulertour(City city){
         int[][] controlGraph = new int[city.edge.length][city.edge.length];
         for (int i = 0; i < city.edge.length; i++) {
-            for (int j = 0; j < city.edge.length; j++) {
-                //Wird benötigt damit in keiner Subtour eine Kante zweimal abgelaufen wird
-                controlGraph[i][j] = city.edge[i][j];
-            }
+            //Wird benötigt damit in keiner Subtour eine Kante zweimal abgelaufen wird
+            System.arraycopy(city.edge[i], 0, controlGraph[i], 0, city.edge.length);
         }
         //odd = ungerade
         int oddDegreeNodes = 0;
@@ -97,19 +94,10 @@ public class InvitationsDistributingRouteCalculator {
 
     private boolean isEulerwegOrEulertour(House endNode, House startNode, City city, int nextHouse){
         if(endNode != null){
-            if(!(endNode.getDegree() == 1 & city.vertexList.get(nextHouse) == endNode)){
-                return true;
-            }else{
-                return false;
-            }
+            return !(endNode.getDegree() == 1 & city.vertexList.get(nextHouse) == endNode);
         }
         else{
-            if(city.vertexList.get(nextHouse) != startNode){
-                return true;
-            }
-            else {
-                return false;
-            }
+            return city.vertexList.get(nextHouse) != startNode;
         }
     }
 
@@ -127,9 +115,7 @@ public class InvitationsDistributingRouteCalculator {
 
        City newCity = new City(city.allHousesOfTheCity);
        for (int j = 0; j < city.edge.length; j++) {
-           for (int k = 0; k < city.edge.length; k++) {
-                    newCity.edge[j][k] = city.edge[j][k];
-           }
+           System.arraycopy(city.edge[j], 0, newCity.edge[j], 0, city.edge.length);
        }
 
        for (Map.Entry<House,House> entry: connectedHouseHashMap.entrySet()) {

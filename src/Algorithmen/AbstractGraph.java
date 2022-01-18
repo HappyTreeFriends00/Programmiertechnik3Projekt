@@ -37,10 +37,6 @@ public abstract class AbstractGraph<T> implements IGetSource{
         edge[vertexList.indexOf(startNode)] [vertexList.indexOf(endNode)] = weight;
     }
 
-    public int getWeightOfEdge(T objectOne, T objectTwo){
-        return edge[vertexList.indexOf(objectOne)][vertexList.indexOf(objectTwo)];
-    }
-
     public void printGraphOut(ArrayList<? extends IObjectGetName> vertexList, int[][] edges){
         String leerzeichen = "     ";
         StringBuilder sb = new StringBuilder();
@@ -53,7 +49,7 @@ public abstract class AbstractGraph<T> implements IGetSource{
         lengthHorizontal[0] = sb.toString().length();
         int index = 1;
         for (IObjectGetName object: vertexList){
-            sb.append(object.getName() + "      ");
+            sb.append(object.getName()).append("      ");
             lengthHorizontal[index] = sb.toString().length();
             for (int i = 0; i < index; i++) {
                     lengthHorizontal[index] -= lengthHorizontal[i];

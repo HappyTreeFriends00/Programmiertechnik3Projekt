@@ -4,7 +4,7 @@ public class RoadStops implements IObjectGetName{
     private boolean isSource;
     private boolean isTrap;
     private String roadStopName;
-    private int roadStopNumber = 0;
+    private int roadStopNumber;
     private static int counter = 0;
     private boolean visited = false;
 

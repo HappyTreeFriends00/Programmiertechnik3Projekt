@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class WorkDistributingList extends AbstractGraph<WorkerOrWork> {
 
     public ArrayList<WorkerOrWork> allWorkerOrWorkOfTheList = vertexList;
-    public int[][] possibleWorkForWorker = edge;
 
     public WorkDistributingList(ArrayList<WorkerOrWork> list, WorkerOrWork source, WorkerOrWork trap){
         super(list, source, trap);
@@ -24,23 +23,6 @@ public class WorkDistributingList extends AbstractGraph<WorkerOrWork> {
         printGraphOut(allWorkerOrWorkOfTheList, graph);
     }
 
-    public WorkerOrWork getWorkerOrWorkWithWorkNumber(int workNumber){
-        for (WorkerOrWork workerOrWork: vertexList) {
-            if(workerOrWork.getWorkerOrWorkNumber() == workNumber){
-                return workerOrWork;
-            }
-        }
-        throw new IllegalArgumentException("Es scheint keine Arbeit oder Arbeiter mit dieser Nummer zu geben");
-    }
-
-    public ArrayList<WorkerOrWork> getAllWorkerOrWorkOfTheList() {
-        return allWorkerOrWorkOfTheList;
-    }
-
-    public int[][] getPossibleWorkForWorker() {
-        return possibleWorkForWorker;
-    }
-
     public WorkerOrWork getSource(){
         for (WorkerOrWork workerOrWork:allWorkerOrWorkOfTheList) {
             if(workerOrWork.isSource()){
@@ -57,5 +39,14 @@ public class WorkDistributingList extends AbstractGraph<WorkerOrWork> {
             }
         }
         return null;
+    }
+
+    public WorkerOrWork findWorkerOrWorkWithName(String name){
+        for (WorkerOrWork workerOrWork:allWorkerOrWorkOfTheList) {
+            if(workerOrWork.getWorkerName().equals(name)){
+                return workerOrWork;
+            }
+        }
+        throw new IllegalArgumentException("Arbeiter oder Arbeit existiert nicht");
     }
 }

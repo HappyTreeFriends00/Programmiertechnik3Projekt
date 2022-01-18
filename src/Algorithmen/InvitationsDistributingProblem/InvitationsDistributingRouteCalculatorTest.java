@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 class InvitationsDistributingRouteCalculatorTest {
 
@@ -21,9 +22,7 @@ class InvitationsDistributingRouteCalculatorTest {
 
         House[] houseArray = {house1, house2, house3, house4, house5,house6};
         ArrayList<House> houses = new ArrayList<>();
-        for (int i = 0; i < houseArray.length; i++) {
-            houses.add(houseArray[i]);
-        }
+        Collections.addAll(houses, houseArray);
         City city = new City(houses);
         city.addWeightForEdgeInUndirectedGraph(house1,house5,1);
         city.addWeightForEdgeInUndirectedGraph(house1,house4,1);
@@ -54,9 +53,7 @@ class InvitationsDistributingRouteCalculatorTest {
 
         House[] houseArray = {house1, house2, house3, house4, house5};
         ArrayList<House> houses = new ArrayList<>();
-        for (int i = 0; i < houseArray.length; i++) {
-            houses.add(houseArray[i]);
-        }
+        Collections.addAll(houses, houseArray);
         City city = new City(houses);
         city.addWeightForEdgeInUndirectedGraph(house1,house5,1);
         city.addWeightForEdgeInUndirectedGraph(house1,house4,1);
@@ -104,7 +101,6 @@ class InvitationsDistributingRouteCalculatorTest {
 
         InvitationsDistributingRouteCalculator calculator = new InvitationsDistributingRouteCalculator();
         City solutionCity = calculator.makeGraphToAnPossibleEulergraph(city);
-        city.printGraphOut(solutionCity.vertexList, solutionCity.edge);
         calculator.calculateEulerwayOrEulertour(solutionCity);
     }
 

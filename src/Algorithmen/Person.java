@@ -40,10 +40,6 @@ public class Person implements IObjectGetName{
         return personName;
     }
 
-    public int getWorkerOrWorkNumber() {
-        return personNumber;
-    }
-
     public boolean isSource() {
         return isSource;
     }

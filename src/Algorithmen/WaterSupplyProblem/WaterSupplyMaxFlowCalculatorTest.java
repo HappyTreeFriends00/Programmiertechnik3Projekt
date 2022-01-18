@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Collections;
 
 class WaterSupplyMaxFlowCalculatorTest {
 
@@ -24,9 +23,7 @@ class WaterSupplyMaxFlowCalculatorTest {
         House supermarkt = new House(9,"supermarkt",false,true);
         House[] houseArray = {wasserwerk, thoma, club, ilona, bogart, dogan,adler,holler,supermarkt};
         ArrayList<House> houses = new ArrayList<>();
-        for (int i = 0; i < houseArray.length; i++) {
-            houses.add(houseArray[i]);
-        }
+        Collections.addAll(houses, houseArray);
         WaterSupplySystem waterSupplySystem = new WaterSupplySystem(houses);
         waterSupplySystem.addWeightForEdgeInDirectedGraph(wasserwerk,thoma,15);
         waterSupplySystem.addWeightForEdgeInDirectedGraph(wasserwerk,ilona,6);

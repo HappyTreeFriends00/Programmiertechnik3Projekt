@@ -1,10 +1,7 @@
 package Algorithmen.WaterSupplyProblem;
 
 import Algorithmen.AbstractFlowOfSystemCalculator;
-import Algorithmen.House;
 import Algorithmen.WaterSupplySystem;
-
-import java.util.ArrayList;
 
 public class WaterSupplyMaxFlowCalculator extends AbstractFlowOfSystemCalculator {
 

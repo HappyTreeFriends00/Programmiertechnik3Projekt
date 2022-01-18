@@ -11,10 +11,6 @@ public class RoadSystem extends AbstractGraph<RoadStops> {
         super(roadStops);
     }
 
-    public ArrayList<RoadStops> getAllCarsOfRoadSystem() {
-        return vertexList;
-    }
-
     public int[][] getStreets() {
         return streets;
     }

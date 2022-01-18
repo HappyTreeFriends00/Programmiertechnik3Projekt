@@ -62,13 +62,4 @@ public class City extends AbstractGraph<House> {
         }
         return null;
     }
-
-    public House findHouseWithSurname(String name){
-        for (House house:allHousesOfTheCity) {
-            if(house.getSurname().equals(name)){
-                return house;
-            }
-        }
-        throw new IllegalArgumentException("Stop existiert nicht");
-    }
 }

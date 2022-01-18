@@ -28,10 +28,6 @@ public class PersonLovesList extends AbstractGraph<Person> {
         return allPersonOfTheList;
     }
 
-    public int[][] getRelationBetweenPersons() {
-        return relationBetweenPersons;
-    }
-
     public Person getSource(){
         for (Person person: allPersonOfTheList) {
             if(person.isSource()){

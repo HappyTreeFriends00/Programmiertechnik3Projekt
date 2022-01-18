@@ -77,7 +77,7 @@ public class MainStreetBuildProblem {
         if (scanner.hasNext()) {
             String nextString = scanner.next();
             if(!nextString.equals("n")) {
-                ArrayList<House> resultList = null;
+                ArrayList<House> resultList;
                 if (scanner.next().equals("y")) {
                     InvitationsDistributingRouteCalculator invitationsDistributingRouteCalculator = new InvitationsDistributingRouteCalculator();
                     try {

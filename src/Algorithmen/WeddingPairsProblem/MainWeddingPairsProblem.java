@@ -20,13 +20,12 @@ public class MainWeddingPairsProblem {
                 String personName = scanner.next();
                 if (personName.equals("fertig")) {
                     giveMorePerson = false;
-                    personArrayList.get(personArrayList.size() - 1).setTrap(true);
                     break;
                 }
                 System.out.println("welches Geschelcht hat die Person m für männlich und f für weiblich");
                 String geschlecht = scanner.next();
                 if (personArrayList.isEmpty()) {
-                    Person person = null;
+                    Person person;
                     if (geschlecht.equals("f")) {
                         person = new Person(index, false, false, personName, true);
                     } else {
@@ -44,7 +43,7 @@ public class MainWeddingPairsProblem {
                         }
                     }
                     if (!houseExist) {
-                        Person person = null;
+                        Person person;
                         if (geschlecht.equals("f")) {
                             person = new Person(index, false, false, personName, true);
                         } else {
