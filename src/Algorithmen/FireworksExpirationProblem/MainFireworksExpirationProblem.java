@@ -1,5 +1,8 @@
 package Algorithmen.FireworksExpirationProblem;
 
+import Algorithmen.Firework;
+import Algorithmen.FireworkChoreography;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -23,7 +26,7 @@ public class MainFireworksExpirationProblem {
                     } else {
                         boolean fireCrackerExist = false;
                         for (Firework firework : fireworkArrayList) {
-                            if (firework.getFirecrackerName() == firecrackerName) {
+                            if (firework.getFirecrackerName().equals(firecrackerName)) {
                                 System.out.println("Der Feuerwerkskörper existiert bereits");
                                 fireCrackerExist = true;
                             }
@@ -37,28 +40,36 @@ public class MainFireworksExpirationProblem {
             }
         }
         boolean givesMore = true;
-        try {
-            for (Firework firework : fireworkArrayList) {
-                System.out.println("Bitte geben Sie für " + firework.getFirecrackerName() + " nacheinander alle dranhängenden Feuerwerkskörper ein");
-                System.out.println("Der nächste Feuerwerkskörper bitte");
-                givesMore = true;
-                while (givesMore) {
-                    if(scanner.hasNext()) {
-                        String firecrackerName = scanner.next();
-                        if(firecrackerName.equals("f")){
-                            givesMore = false;
-                            break;
-                        }
-                        firework.addFollowingFirecracker(firework.findFireworkWithName(firecrackerName, fireworkArrayList));
-                        System.out.println("falls sie fertig sind bitte mit f bestätigen");
-                        System.out.println("Der nächste Feuerwerkskörper bitte");
+        FireworkChoreography choreography = new FireworkChoreography(fireworkArrayList);
+        boolean givesMoreWeightBetweenNodes = true;
+        System.out.println("jetzt geben Sie bitte für jeden Feuerwerkskörper einen dranhängenden Feuerwerkskörper und die Länge der Zündschnurr als ganze Zahl an.");
+        Scanner scanner1 = new Scanner(System.in);
+        while (givesMoreWeightBetweenNodes) {
+            System.out.println("Zunächst der erste Feuerwerkskörper");
+            if (scanner1.hasNext()) {
+                try {
+                    String firecrackerName1 = scanner1.next();
+                    if(firecrackerName1.equals("fertig")){
+                        givesMoreWeightBetweenNodes = false;
+                        break;
                     }
+                    System.out.println("Jetzt der Zweite");
+                    String firecrackername2 = scanner1.next();
+                    System.out.println("Und die Länge der Zündschnur");
+                    int weight = scanner1.nextInt();
+                    choreography.addWeightForEdgeInUndirectedGraph(choreography.findFirecrackerWithName(firecrackerName1), choreography.findFirecrackerWithName(firecrackername2), weight);
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Einer der Feuerwerkskörper existiert nicht. Bitte versuchen sie es erneut");
+                    givesMoreWeightBetweenNodes = false;
+                } catch (Exception e) {
+                    System.out.println("Es wurden falsche Daten eingegeben. Vorgang wird abgebrochen und ausgewertet");
                 }
+            } else {
+                givesMoreWeightBetweenNodes = false;
             }
-        }catch (NullPointerException e){
-            System.out.println("Sie haben keine Feuerwerkskörper eingegeben");
+            System.out.println("\nSobald Sie fertig sind mit der Eingabe \"fertig\" und enter bestätigen");
         }
-        FireworkChoreographieCalculator calculator = new FireworkChoreographieCalculator();
-        System.out.println(calculator.toStringExpirationOfFirework(fireworkArrayList.get(0)));
+        FireworkChoreographyCalculator calculator = new FireworkChoreographyCalculator();
+        System.out.println(calculator.toStringExpirationOfFirework(choreography.allFireworksOfChoreography.get(0), choreography));
     }
 }

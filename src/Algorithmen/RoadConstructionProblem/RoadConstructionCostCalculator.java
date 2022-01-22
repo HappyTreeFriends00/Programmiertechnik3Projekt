@@ -43,11 +43,12 @@ public class RoadConstructionCostCalculator {
                         graph[city.getAllHousesOfCity().indexOf(actualHouse.previous)][city.getAllHousesOfCity().indexOf(actualHouse.house)] = actualHouse.key;
                     }
                 }
+            //Wird gemacht damit die PriorityQueue sich selbst sortiert
             PriorityQueue<Node> priorityQueue1 = new PriorityQueue<>();
             for(Node node: priorityQueue){
                     priorityQueue1.add(node);
                 }
-                priorityQueue = priorityQueue1;
+            priorityQueue = priorityQueue1;
         }
         return graph;
     }
