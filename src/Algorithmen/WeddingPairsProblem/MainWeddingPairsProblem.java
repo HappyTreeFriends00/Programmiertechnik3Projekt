@@ -22,11 +22,11 @@ public class MainWeddingPairsProblem {
                     giveMorePerson = false;
                     break;
                 }
-                System.out.println("welches Geschelcht hat die Person m für männlich und f für weiblich");
+                System.out.println("welches Geschelcht hat die Person m für männlich und w für weiblich");
                 String geschlecht = scanner.next();
                 if (personArrayList.isEmpty()) {
                     Person person;
-                    if (geschlecht.equals("f")) {
+                    if (geschlecht.equals("w")) {
                         person = new Person(index, false, false, personName, true);
                     } else {
                         person = new Person(index, false, false, personName, false);
